@@ -41,7 +41,7 @@ Layanan kategoriPria[5][10] = {
 int jumlahPerKategoriPria[5] = {6, 4, 4, 4, 1};
 
 // Fungsi untuk login kasir
-int login() {
+int login(char *namaKasir) {
     char username[50], password[50];
     printf("=== LOGIN KASIR ===\n");
     printf("Username: ");
@@ -49,8 +49,21 @@ int login() {
     printf("Password: ");
     scanf("%s", password);
     
-    // Username dan password default
-    if (strcmp(username, "kasir") == 0 && strcmp(password, "123") == 0) {
+    // Daftar kasir
+    if (strcmp(username, "tia") == 0 && strcmp(password, "251712044") == 0) {
+        strcpy(namaKasir, "tia");
+        printf("Login berhasil!\n\n");
+        return 1;
+    } else if (strcmp(username, "tesa") == 0 && strcmp(password, "251712036") == 0) {
+        strcpy(namaKasir, "tesa");
+        printf("Login berhasil!\n\n");
+        return 1;
+    } else if (strcmp(username, "margareth") == 0 && strcmp(password, "251712043") == 0) {
+        strcpy(namaKasir, "margareth");
+        printf("Login berhasil!\n\n");
+        return 1;
+    } else if (strcmp(username, "kevin") == 0 && strcmp(password, "251712045") == 0) {
+        strcpy(namaKasir, "kevin");
         printf("Login berhasil!\n\n");
         return 1;
     } else {
@@ -99,8 +112,9 @@ void pilihKategoriDanLayanan(Layanan kategori[][10], int jumlahKategori, int jum
 }
 
 // Fungsi untuk mencetak struk
-void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayanan[][100], int jumlahPilihan, int total) {
+void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayanan[][100], int jumlahPilihan, int total, char metode[], int uangDiterima, int kembalian, char namaKasir[]) {
     printf("\n\n=== STRUK TRANSAKSI SALON ===\n");
+    printf("Nama Kasir: %s\n", namaKasir);
     printf("Nama Customer: %s\n", namaCustomer);
     printf("Umur: %d tahun\n", umur);
     printf("Gender: %s\n", gender);
@@ -109,11 +123,17 @@ void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayana
         printf("- %s\n", pilihanLayanan[i]);
     }
     printf("Total Biaya: Rp %d\n", total);
+    printf("Metode Pembayaran: %s\n", metode);
+    if (strcmp(metode, "cash") == 0 || strcmp(metode, "Cash") == 0) {
+        printf("Uang Diterima: Rp %d\n", uangDiterima);
+        printf("Kembalian: Rp %d\n", kembalian);
+    }
     printf("Terima kasih telah berkunjung!\n");
 }
 
 int main() {
-    if (!login()) return 0;
+    char namaKasir[50];
+    if (!login(namaKasir)) return 0;
     
     char namaCustomer[50], gender[10];
     int umur, total = 0, jumlahPilihan = 0;
@@ -137,7 +157,28 @@ int main() {
         return 0;
     }
     
-    cetakStruk(namaCustomer, umur, gender, pilihanLayanan, jumlahPilihan, total);
+    // Bagian pembayaran
+    char metode[10];
+    int uangDiterima = 0, kembalian = 0;
+    printf("\nPilih metode pembayaran (transfer/cash): ");
+    scanf("%s", metode);
+    if (strcmp(metode, "cash") == 0 || strcmp(metode, "Cash") == 0) {
+        do {
+            printf("Masukkan jumlah uang yang diterima: ");
+            scanf("%d", &uangDiterima);
+            if (uangDiterima < total) {
+                printf("Uang tidak cukup! Silakan masukkan jumlah yang lebih besar.\n");
+            }
+        } while (uangDiterima < total);
+        kembalian = uangDiterima - total;
+    } else if (strcmp(metode, "transfer") == 0 || strcmp(metode, "Transfer") == 0) {
+        // Untuk transfer, tidak perlu input uang
+    } else {
+        printf("Metode pembayaran tidak valid!\n");
+        return 0;
+    }
+    
+    cetakStruk(namaCustomer, umur, gender, pilihanLayanan, jumlahPilihan, total, metode, uangDiterima, kembalian, namaKasir);
     
     return 0;
 }
