@@ -1,14 +1,11 @@
-
 #include <stdio.h>
 #include <stdlib.h>
-#include<string.h>
-
+#include <string.h>
 
 typedef struct {
     char nama[100];
     int harga;
 } Layanan;
-
 
 Layanan kategoriWanita[6][10] = {
     // 1. Hair treatment
@@ -26,7 +23,6 @@ Layanan kategoriWanita[6][10] = {
 };
 int jumlahPerKategoriWanita[6] = {7, 4, 5, 3, 5, 5};
 
-
 Layanan kategoriPria[5][10] = {
     // 1. Hair treatment
     {{"Haircut / Potong Rambut", 25000}, {"Hair Wash & Styling", 25000}, {"Hair Spa / Creambath", 50000}, {"Perawatan Rambut Rontok", 100000}, {"Hair Coloring / Highlight", 50000}, {"Smoothing / Perm", 100000}},
@@ -41,7 +37,6 @@ Layanan kategoriPria[5][10] = {
 };
 int jumlahPerKategoriPria[5] = {6, 4, 4, 4, 1};
 
-
 int login(char *namaKasir) {
     char username[50], password[50];
     printf("=== LOGIN KASIR ===\n");
@@ -49,7 +44,6 @@ int login(char *namaKasir) {
     scanf("%s", username);
     printf("Password: ");
     scanf("%s", password);
-
 
     if (strcmp(username, "tia") == 0 && strcmp(password, "251712044") == 0) {
         strcpy(namaKasir, "tia");
@@ -72,7 +66,6 @@ int login(char *namaKasir) {
         return 0;
     }
 }
-
 
 void pilihKategoriDanLayanan(Layanan kategori[][10], int jumlahKategori, int jumlahPerKategori[], char pilihanLayanan[][100], int *total, int *jumlahPilihan, char namaKategori[][50]) {
     int kategoriPilih;
@@ -112,7 +105,6 @@ void pilihKategoriDanLayanan(Layanan kategori[][10], int jumlahKategori, int jum
     }
 }
 
-
 void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayanan[][100], int jumlahPilihan, int total, char metode[], int uangDiterima, int kembalian, char namaKasir[]) {
     printf("\n\n=== STRUK TRANSAKSI SALON ===\n");
     printf("Nama Kasir: %s\n", namaKasir);
@@ -134,7 +126,20 @@ void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayana
 
 int main() {
     char namaKasir[50];
-    if (!login(namaKasir)) return 0;
+    int loginBerhasil = 0;
+    for (int attempt = 0; attempt < 3; attempt++) {
+        if (login(namaKasir)) {
+            loginBerhasil = 1;
+            break;
+        }
+        if (attempt < 2) {
+            printf("Percobaan login ke-%d gagal. Silakan coba lagi.\n\n", attempt + 1);
+        }
+    }
+    if (!loginBerhasil) {
+        printf("Percobaan login maksimal tercapai. Silahkan coba lagi beberapa saat kemudian.\n");
+        return 0;
+    }
 
     char namaCustomer[50], gender[10];
     int umur, total = 0, jumlahPilihan = 0;
@@ -158,7 +163,6 @@ int main() {
         return 0;
     }
 
-
     char metode[10];
     int uangDiterima = 0, kembalian = 0;
     printf("\nPilih metode pembayaran (transfer/cash): ");
@@ -173,7 +177,7 @@ int main() {
         } while (uangDiterima < total);
         kembalian = uangDiterima - total;
     } else if (strcmp(metode, "transfer") == 0 || strcmp(metode, "Transfer") == 0) {
-
+       
     } else {
         printf("Metode pembayaran tidak valid!\n");
         return 0;
