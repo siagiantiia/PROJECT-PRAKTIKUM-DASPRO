@@ -1,195 +1,143 @@
-tolong buat kode program bahasa c yang memuat tentang transaksi salon dengan struknnya. dengan pemilihan flowchart awal awal input username dan password kasir lalu masukkan nama costumer , dilanjutkan input umur costumer, lalu buat pilihan gender pria atau wanita. jika wanita pilihan yang tersedia adalah
-
-💇‍♀️ 1. Perawatan Rambut (Hair Treatment)
-
-Ini layanan paling umum di salon:
-
-Cuci & Blow → 60000
-
-Potong rambut → 50000
-
-Smoothing / Rebonding / Keratin / Hair Botox → 200000
-
-Hair Coloring / Bleaching / Highlight → 100000
-
-Hair Mask / Creambath / Hair Spa → 100000
-
-Hair Extension → 75000
-
-Hair Toning → 30000
-
-
-
----
-
-💅 2. Perawatan Kuku (Nail Care)
-
-Biasanya tersedia di salon kecantikan atau nail bar:
-
-Manicure → 50000
-
-Pedicure → 50000
-
-Nail Art → 100000
-
-Gel Polish / Nail Extension → 150000
-
-
-
----
-
-💆‍♀️ 3. Perawatan Wajah (Face Treatment)
-
-Biasanya untuk relaksasi dan perawatan kulit wajah:
-
-Facial → 45000
-
-Masker wajah / Face spa→20000
-
-Totok wajah → 25000
-
-Eyebrow shaping → 25000
-
-Eyelash extension / Lash lift → 50000
-
-
-
----
-
-💄 4. Makeup & Styling
-
-Biasanya untuk acara tertentu:
-
-Makeup harian / pesta / wisuda / pengantin = 250000
-
-Hair styling (sanggul, curly, blow out)=250000
-
-Makeup + hijab styling untuk acara formal=200000
-
-
-
----
-
-🧖‍♀️ 5. Perawatan Tubuh (Body Treatment)
-
-Umumnya tersedia di salon + spa:
-
-Body scrub / lulur → 50000
-
-Body spa → 25000
-
-Massage (pijat) → 25000
-
-Body whitening / bleaching→400000
-
-Waxing / threading → 200000
-
-
-
----
-
-👗 6. Layanan Tambahan (tergantung salon)
-
-Ear candling → 100000
-
-Tanning → 1000000
-
-Piercing → 300000
-
-Rias pengantin & paket wedding→2000000
-
-Paket perawatan lengkap (Hair + Face + Body Spa) →500000
-
-Jika pilihan pria dengan pilihan
-
-💈 1. Perawatan Rambut (Hair Treatment)
-
-Cowok paling sering datang ke salon/barbershop buat bagian ini:
-
-✂️ Haircut / Potong rambut→ 25000
-
-🧴 Hair Wash & Styling→25000
-
-💆‍♂️ Hair Spa / Creambath→50000
-
-💪 Perawatan rambut rontok→100000
-
-🎨 Hair Coloring / Highlight→50000
-
-💨 Smoothing / Perm→100000
-
----
-
-🧔 2. Perawatan Wajah (Face Treatment)
-
-💧 Facial pria→50000
-
-😌 Totok wajah / face massage→50000
-
-🧼 Masker wajah→40000
-
-✂️ Perapian alis / jenggot→45000
-
----
-
-💆‍♂️ 3. Perawatan Tubuh (Body Treatment)
-💪 Body massage→ 300000
-
-
-🧖‍♂️ Body scrub / lulur→15000
-
-
-🧊 Body spa→100000
-
-🧽 Body whitening / brightening→100000
-
-
-
----
-
-🧠 4. Grooming & Layanan Tambahan
-
-✂️ Shaving (Cukur kumis, jenggot, cambang) →75000
-
-👂 Ear cleaning (membersihkan telinga) →45000
-
-💅 Manicure / Pedicure untuk pria→40000
-
-💡 Hair tattoo / desain cukuran→35000
-
----
-
-🌿 5. Paket Perawatan Lengkap Cowok (Men’s Package)
-
-Beberapa salon cowok atau barbershop premium biasanya punya paket:
-
-Men’s Relax Package →300000
-- Haircut
-- Facial
-- Massage
-- Hair spa
-(± 1,5 jam)
-
-
-Lalu buat lah tampilan kode berikut seperti jika dia memilih potong  rambut maka akan dimasukkan kedalam struk lalu di jumlah kan seluruh total apa saja yang di lakukan di salon
-
-Dan tolong ubah kategori nya menjadi 
-Pada wanita
-1.	Hair treatment
-2.	Nail care
-3.	Face treatment
-4.	Makeup and styling
-5.	Body treatment
-6.	Layanan tambahan
-
-
-Kategori untuk pria
-
-1.	Hair treatment
-2.	Face treatment
-3.	Body treatment
-4.	Grooming & layanan tambahan
-5.	Paket lengkap pria
-
-Dan juga tolong buat diskon untuk pembelian 3 kali treatmet mendapat diskon 10% , 5 treatment 20%
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Struct untuk menyimpan layanan
+typedef struct {
+    char nama[100];
+    int harga;
+} Layanan;
+
+// Kategori dan layanan untuk wanita
+Layanan kategoriWanita[6][10] = {
+    // 1. Hair treatment
+    {{"Cuci & Blow", 60000}, {"Potong Rambut", 50000}, {"Smoothing / Rebonding / Keratin / Hair Botox", 200000}, {"Hair Coloring / Bleaching / Highlight", 100000}, {"Hair Mask / Creambath / Hair Spa", 100000}, {"Hair Extension", 75000}, {"Hair Toning", 30000}},
+    // 2. Nail care
+    {{"Manicure", 50000}, {"Pedicure", 50000}, {"Nail Art", 100000}, {"Gel Polish / Nail Extension", 150000}},
+    // 3. Face treatment
+    {{"Facial", 45000}, {"Masker Wajah / Face Spa", 20000}, {"Totok Wajah", 25000}, {"Eyebrow Shaping", 25000}, {"Eyelash Extension / Lash Lift", 50000}},
+    // 4. Makeup and styling
+    {{"Makeup Harian / Pesta / Wisuda / Pengantin", 250000}, {"Hair Styling (Sanggul, Curly, Blow Out)", 250000}, {"Makeup + Hijab Styling untuk Acara Formal", 200000}},
+    // 5. Body treatment
+    {{"Body Scrub / Lulur", 50000}, {"Body Spa", 25000}, {"Massage (Pijat)", 25000}, {"Body Whitening / Bleaching", 400000}, {"Waxing / Threading", 200000}},
+    // 6. Layanan tambahan
+    {{"Ear Candling", 100000}, {"Tanning", 1000000}, {"Piercing", 300000}, {"Rias Pengantin & Paket Wedding", 2000000}, {"Paket Perawatan Lengkap (Hair + Face + Body Spa)", 500000}}
+};
+int jumlahPerKategoriWanita[6] = {7, 4, 5, 3, 5, 5};
+
+// Kategori dan layanan untuk pria
+Layanan kategoriPria[5][10] = {
+    // 1. Hair treatment
+    {{"Haircut / Potong Rambut", 25000}, {"Hair Wash & Styling", 25000}, {"Hair Spa / Creambath", 50000}, {"Perawatan Rambut Rontok", 100000}, {"Hair Coloring / Highlight", 50000}, {"Smoothing / Perm", 100000}},
+    // 2. Face treatment
+    {{"Facial Pria", 50000}, {"Totok Wajah / Face Massage", 50000}, {"Masker Wajah", 40000}, {"Perapian Alis / Jenggot", 45000}},
+    // 3. Body treatment
+    {{"Body Massage", 300000}, {"Body Scrub / Lulur", 15000}, {"Body Spa", 100000}, {"Body Whitening / Brightening", 100000}},
+    // 4. Grooming & layanan tambahan
+    {{"Shaving (Cukur Kumis, Jenggot, Cambang)", 75000}, {"Ear Cleaning (Membersihkan Telinga)", 45000}, {"Manicure / Pedicure untuk Pria", 40000}, {"Hair Tattoo / Desain Cukuran", 35000}},
+    // 5. Paket lengkap pria
+    {{"Men’s Relax Package (Haircut + Facial + Massage + Hair Spa)", 300000}}
+};
+int jumlahPerKategoriPria[5] = {6, 4, 4, 4, 1};
+
+// Fungsi untuk login kasir
+int login() {
+    char username[50], password[50];
+    printf("=== LOGIN KASIR ===\n");
+    printf("Username: ");
+    scanf("%s", username);
+    printf("Password: ");
+    scanf("%s", password);
+    
+    // Username dan password default
+    if (strcmp(username, "kasir") == 0 && strcmp(password, "123") == 0) {
+        printf("Login berhasil!\n\n");
+        return 1;
+    } else {
+        printf("Username atau password salah!\n");
+        return 0;
+    }
+}
+
+// Fungsi untuk memilih kategori dan layanan
+void pilihKategoriDanLayanan(Layanan kategori[][10], int jumlahKategori, int jumlahPerKategori[], char pilihanLayanan[][100], int *total, int *jumlahPilihan, char namaKategori[][50]) {
+    int kategoriPilih;
+    while (1) {
+        printf("\nPilih kategori layanan (1-%d, 0 untuk selesai):\n", jumlahKategori);
+        for (int i = 0; i < jumlahKategori; i++) {
+            printf("%d. %s\n", i+1, namaKategori[i]);
+        }
+        printf("Pilihan: ");
+        scanf("%d", &kategoriPilih);
+        if (kategoriPilih == 0) break;
+        if (kategoriPilih < 1 || kategoriPilih > jumlahKategori) {
+            printf("Pilihan tidak valid!\n");
+            continue;
+        }
+        
+        printf("\nLayanan dalam %s:\n", namaKategori[kategoriPilih-1]);
+        for (int i = 0; i < jumlahPerKategori[kategoriPilih-1]; i++) {
+            printf("%d. %s - Rp %d\n", i+1, kategori[kategoriPilih-1][i].nama, kategori[kategoriPilih-1][i].harga);
+        }
+        
+        int layananPilih;
+        while (1) {
+            printf("Pilih layanan (masukkan nomor, 0 untuk kembali ke kategori):\n");
+            printf("Pilihan: ");
+            scanf("%d", &layananPilih);
+            if (layananPilih == 0) break;
+            if (layananPilih < 1 || layananPilih > jumlahPerKategori[kategoriPilih-1]) {
+                printf("Pilihan tidak valid!\n");
+                continue;
+            }
+            strcpy(pilihanLayanan[*jumlahPilihan], kategori[kategoriPilih-1][layananPilih-1].nama);
+            *total += kategori[kategoriPilih-1][layananPilih-1].harga;
+            (*jumlahPilihan)++;
+            printf("Layanan '%s' ditambahkan. Total sementara: Rp %d\n", kategori[kategoriPilih-1][layananPilih-1].nama, *total);
+        }
+    }
+}
+
+// Fungsi untuk mencetak struk
+void cetakStruk(char namaCustomer[], int umur, char gender[], char pilihanLayanan[][100], int jumlahPilihan, int total) {
+    printf("\n\n=== STRUK TRANSAKSI SALON ===\n");
+    printf("Nama Customer: %s\n", namaCustomer);
+    printf("Umur: %d tahun\n", umur);
+    printf("Gender: %s\n", gender);
+    printf("Layanan yang dipilih:\n");
+    for (int i = 0; i < jumlahPilihan; i++) {
+        printf("- %s\n", pilihanLayanan[i]);
+    }
+    printf("Total Biaya: Rp %d\n", total);
+    printf("Terima kasih telah berkunjung!\n");
+}
+
+int main() {
+    if (!login()) return 0;
+    
+    char namaCustomer[50], gender[10];
+    int umur, total = 0, jumlahPilihan = 0;
+    char pilihanLayanan[50][100]; // Asumsi maksimal 50 pilihan
+    
+    printf("Masukkan nama customer: ");
+    scanf("%s", namaCustomer);
+    printf("Masukkan umur customer: ");
+    scanf("%d", &umur);
+    printf("Pilih gender (Pria/Wanita): ");
+    scanf("%s", gender);
+    
+    if (strcmp(gender, "Wanita") == 0 || strcmp(gender, "wanita") == 0) {
+        char namaKategoriWanita[6][50] = {"Hair treatment", "Nail care", "Face treatment", "Makeup and styling", "Body treatment", "Layanan tambahan"};
+        pilihKategoriDanLayanan(kategoriWanita, 6, jumlahPerKategoriWanita, pilihanLayanan, &total, &jumlahPilihan, namaKategoriWanita);
+    } else if (strcmp(gender, "Pria") == 0 || strcmp(gender, "pria") == 0) {
+        char namaKategoriPria[5][50] = {"Hair treatment", "Face treatment", "Body treatment", "Grooming & layanan tambahan", "Paket lengkap pria"};
+        pilihKategoriDanLayanan(kategoriPria, 5, jumlahPerKategoriPria, pilihanLayanan, &total, &jumlahPilihan, namaKategoriPria);
+    } else {
+        printf("Gender tidak valid!\n");
+        return 0;
+    }
+    
+    cetakStruk(namaCustomer, umur, gender, pilihanLayanan, jumlahPilihan, total);
+    
+    return 0;
+}
